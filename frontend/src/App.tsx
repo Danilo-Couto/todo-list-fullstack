@@ -1,19 +1,28 @@
 import { useState } from 'react';
 import { Form } from './components/Form';
 import { TaskList } from './components/TaskList';
-import { useFeth } from './hooks/useFetch';
+import { useFetch } from './hooks/useFetch';
 
+const url = 'http://localhost:4003/task'
 function Todo() {
-  const {taskList, isLoading} = useFeth('http://localhost:4003/task');
-  //const [taskList, setTaskList] = useState<any[]>([]); 
+  const {taskList, isLoading} = useFetch(url);
+  const [taskListState, setTaskList] = useState<any[]>([]); 
+  const props = {setTaskList, taskList}
+
+  // const {data, isFetching} = useQuery('taskList', async () => {
+  //   const res = await axios.get(url);
+  //   return res.data;
+  // });
+  
+  // concentrar todas as funcoes de axios num so componente
 
   return (
     <>
-  {isLoading && <p>Loading</p>}
   <div className="todo-wrapper">
     <h1>To Do List</h1>
-    <Form setTaskList ={''} taskList={taskList} />
-    <TaskList taskList={taskList}/>
+    <Form {...props} />
+    {isLoading && <p>Loading</p>}
+    <TaskList taskList={taskList || taskListState}/>
   </div>
     </>
   );
