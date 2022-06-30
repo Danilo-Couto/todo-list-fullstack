@@ -1,7 +1,8 @@
+import axios from 'axios';
 import { useState } from 'react';
+import { Inputs } from '../Inputs';
 
-// interface FormProps {
-// }
+const url = 'http://localhost:4003/task'
 
 export function Form({setTaskList, taskList}: any) {
 
@@ -9,37 +10,36 @@ export function Form({setTaskList, taskList}: any) {
   const [content, setContent] = useState(''); 
   const [owner, setOwner] = useState('Danilo'); 
   
-  const addTitle = (event: any) => setTitle(event.target.valueitle);
-  const addContent = (event: any) => setContent(event.target.value);
-  const addOwner = (event: any) => setOwner(event.target.value); 
-
-  const submitTask = (event: any) => {
+  const submitTask = async (event: any) => {
     event.preventDefault(); 
-    if (!taskList) return;
+    // if (!taskList) return;
+    try {
+      await axios.post(url, {
+        name: title, content, id_user: owner
+      });
+      alert('task saved')
+      // alert(res.data);
+      // setTaskList([...taskList, {title, content, owner}]);
+      // setTitle(''); 
+      // setContent('');
+      } catch (error) {
+      console.log(error) //tratar erro
+    }
+  }
 
-    setTaskList([...taskList, {title, content, owner}]);
-    setTitle(''); 
-    setContent(''); 
+  const props = {
+    title, setTitle,
+    content, setContent,
+    owner, setOwner,
+    submitTask
   }
  
   return (
     <>
       <form onSubmit={submitTask}>
-
-        <input type="text" placeholder="Adicione uma tarefa" onChange={addTitle} value={title} />
-
-        <input type="text" placeholder="Descreva a tarefa" onChange={addContent} value={content} />
-
-        <label> Escolha o responsável:
-          <select onChange={addOwner} value={owner}>
-            <option value="Danilo">Danilo</option>
-            <option value="Murilo">Murilo</option>
-          </select>
-        </label>
-
-        <button type="submit">Adicionar</button>
-
-      </form>
+        <Inputs {...props} />
+        <button type="button">Excluir Tudo</button>
+      </form>  
     </>
   );
 }
