@@ -1,17 +1,5 @@
-import axios from 'axios';
-const url = 'http://localhost:4003/task'
+export function TaskList({taskList, deleteOne, editOne}:any) {
 
-export function TaskList({taskList}:any) {
-
-
-  const deleteOne = async ({target}: any) => {
-    try {
-      await axios.delete(`${url}/${target.value}`)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-  
   return (
     <> 
     {taskList?.map(({id, name, content, TaskUser}: any, index: any) => (
@@ -20,6 +8,7 @@ export function TaskList({taskList}:any) {
           <li>{content}</li>
           <li>{TaskUser.map((user: { id_user: any; }) => user.id_user)}</li>
           <button type="button" onClick={deleteOne} value={id}>Excluir</button>
+          <button type="button" onClick={editOne} value={id}>Editar</button>
       </ul>
         ))}
     </>

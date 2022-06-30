@@ -6,6 +6,10 @@ export function useFetch<Response = unknown>(url: string){
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<Error | null>(null)
 
+    const [title, setTitle] = useState('');  
+    const [content, setContent] = useState(''); 
+    const [owner, setOwner] = useState('Danilo'); 
+    
     // buscar sobre stale while revalidation
     useEffect(()=> {
         axios.get(url).then(res => {
@@ -19,5 +23,51 @@ export function useFetch<Response = unknown>(url: string){
         })
     }, [taskList, url])
     
-    return { taskList, isLoading, error };
+    const submitTask = async (event: any) => {
+      event.preventDefault(); 
+      try {
+        await axios.post(url, {
+          name: title, content, id_user: owner // incluir via backend rota para usar owner
+        });
+        } catch (error) {
+        console.log(error) //tratar erro
+        } finally {
+          setTitle(''); 
+          setContent('');
+        }
+    }
+
+    const deleteAll = async () => {
+      try {
+        await axios.delete(url);
+      } catch (error) {
+        console.log(error) //tratar erro
+      }
+    }
+    const deleteOne = async ({target}: any) => {
+      try {
+        await axios.delete(`${url}/${target.value}`)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    const editOne = async ({target}: any) => {
+      try {
+        await axios.put(`${url}/${target.value}`, {
+          name: title, content, id_user: owner 
+        });
+        } catch (error) {
+        console.log(error) 
+      }
+    }
+
+    return {  
+        isLoading, error, taskList,
+        title, setTitle,
+        content, setContent,
+        owner, setOwner,
+        submitTask, deleteAll,
+        deleteOne, editOne 
+    };
 }

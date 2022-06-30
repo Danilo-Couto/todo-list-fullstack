@@ -7,11 +7,9 @@ interface InputsProps {
   setOwner: Function;
 }
 
-export function Inputs({
-  title, setTitle,
-  content, setContent,
-  owner, setOwner
-}: InputsProps) {
+export function Inputs({...propsComing}: InputsProps) {
+
+  const {setTitle, title, setContent, setOwner, content, owner } = propsComing;
 
   const addTitle = ({target}: any) => setTitle(target.value);
   const addContent = ({target}: any) => setContent(target.value);
