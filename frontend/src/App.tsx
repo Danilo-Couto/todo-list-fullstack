@@ -1,63 +1,21 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { Form } from './components/Form';
+import { TaskList } from './components/TaskList';
+import { useFeth } from './hooks/useFetch';
 
 function Todo() {
-  const [title, setTitle] = useState('');  
-  const [content, setContent] = useState(''); 
-  const [owner, setOwner] = useState('Danilo'); 
-  
-  const [taskList, setTitleList] = useState<any[]>([]); 
-
-  function addTitle(event: any) {
-    const title = event.target.value;
-    setTitle(title); 
-  }
-  
-  function addContent(event: any) {
-    const content = event.target.value;
-    setContent(content); 
-  }
-
-  function addOwner(event: any) {
-    const owner = event.target.value;
-    setOwner(owner); 
-  }
-
-  function submitTask(event: any) {
-    event.preventDefault(); 
-
-    if (!taskList) return;
-    setTitleList([...taskList, {title, content, owner}]);
-    setTitle(''); 
-    setContent(''); 
-  }
+  const {taskList, isLoading} = useFeth('http://localhost:4003/task');
+  //const [taskList, setTaskList] = useState<any[]>([]); 
 
   return (
-    <div className="todo-wrapper">
-      <h1>To Do List</h1>
-      <form onSubmit={submitTask}>
-
-        <input type="text" placeholder="Adicione uma tarefa" onChange={addTitle} value={title} />
-
-        <input type="text" placeholder="Descreva a tarefa" onChange={addContent} value={content} />
-
-        <label>
-        Escolha o responsável:
-        <select onChange={addOwner} value={owner}>
-          <option value="Danilo">Danilo</option>
-          <option value="Murilo">Murilo</option>
-        </select>
-        </label>
-
-        <button type="submit">Adicionar</button>
-      </form>
-      {taskList.map((task, index) => (
-      <ul key={index} className="todo-list" >
-          <li>{task.title}</li>
-          <ol>{task.content}</ol>
-          <ol>{task.owner}</ol>
-      </ul>
-        ))}
-    </div>
+    <>
+  {isLoading && <p>Loading</p>}
+  <div className="todo-wrapper">
+    <h1>To Do List</h1>
+    <Form setTaskList ={''} taskList={taskList} />
+    <TaskList taskList={taskList}/>
+  </div>
+    </>
   );
 }
 

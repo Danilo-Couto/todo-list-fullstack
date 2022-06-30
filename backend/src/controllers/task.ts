@@ -13,7 +13,6 @@ export class TaskController {
 
     async createWithUser(req: Request, res: Response){
         const { name, content, id_user} = req.body;
-        console.log(req.body)
 
         const task = await prismaClient.taskUser.create({
             data: { 
@@ -29,7 +28,9 @@ export class TaskController {
     }
 
     async findAll(_req: Request, res: Response){
-        const tasks = await prismaClient.task.findMany()
+        const tasks = await prismaClient.task.findMany({
+            include: {TaskUser: true}
+        })
         return res.json(tasks);
     }
 
