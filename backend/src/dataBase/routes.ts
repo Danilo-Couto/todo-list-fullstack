@@ -12,8 +12,11 @@ const taskUser = new TaskUserController();
 
 router.post('/task', task.create);
 router.get('/task', task.findAll);
-router.get('/task/:id', task.findById);
+router.get('/task/:id', task.findOne);
 router.post('/taskwithuser', task.createWithUser);
+
+router.delete('/task/', task.deleteAll);
+router.delete('/task/:id', task.deleteOne);
 
 router.post('/user', user.create);
 router.get('/user', user.findAll);

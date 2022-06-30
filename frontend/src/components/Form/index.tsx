@@ -15,14 +15,21 @@ export function Form({setTaskList, taskList}: any) {
     // if (!taskList) return;
     try {
       await axios.post(url, {
-        name: title, content, id_user: owner
+        name: title, content, id_user: owner // incluir via backend rota para usar owner
       });
       alert('task saved')
       // alert(res.data);
       // setTaskList([...taskList, {title, content, owner}]);
-      // setTitle(''); 
-      // setContent('');
+      setTitle(''); 
+      setContent('');
       } catch (error) {
+      console.log(error) //tratar erro
+    }
+  }
+  const deleteAll = async () => {
+    try {
+      await axios.delete(url);
+    } catch (error) {
       console.log(error) //tratar erro
     }
   }
@@ -38,7 +45,7 @@ export function Form({setTaskList, taskList}: any) {
     <>
       <form onSubmit={submitTask}>
         <Inputs {...props} />
-        <button type="button">Excluir Tudo</button>
+        <button type="button" onClick={deleteAll}>Excluir Tudo</button>
       </form>  
     </>
   );

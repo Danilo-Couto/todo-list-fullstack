@@ -17,7 +17,7 @@ export function useFetch<Response = unknown>(url: string){
         .finally(()=> {
             setIsLoading(false);
         })
-    }, [url])
+    }, [taskList, url])
     
     return { taskList, isLoading, error };
 }

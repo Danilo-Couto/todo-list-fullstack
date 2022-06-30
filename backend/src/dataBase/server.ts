@@ -1,5 +1,5 @@
 import express from 'express';
-import productRouter from './routes';
+import routes from './routes';
 const cors = require('cors')
 
 const app = express();
@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 app.use(cors())
 
-app.use(productRouter);
+app.use(routes);
 
 app.use('/test', (req, res) => { res.json('Hello world') });
 
