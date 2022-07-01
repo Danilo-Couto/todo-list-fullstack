@@ -1,15 +1,16 @@
 import { Inputs } from '../Inputs';
 
 export function Form({...propsComing}: any) {
-  const {submitTask, deleteAll} = propsComing;
   const props = {...propsComing}
+  const {submitTask, deleteAll} = propsComing;
 
   return (
     <>
       <form onSubmit={submitTask}>
-        <Inputs {...props} />
+      <Inputs {...props} />
+        <button type="submit">Adicionar</button>
         <button type="button" onClick={deleteAll}>Excluir Tudo</button>
-      </form>  
+    </form>  
     </>
   );
 }
