@@ -9,6 +9,8 @@ export function useFetch<Response = unknown>(url: string){
     const [title, setTitle] = useState('');  
     const [content, setContent] = useState(''); 
     const [owner, setOwner] = useState('Danilo'); 
+
+    const [isEditing, setIsEditing] = useState(false);
     
     // buscar sobre stale while revalidation
     useEffect(()=> {
@@ -21,14 +23,16 @@ export function useFetch<Response = unknown>(url: string){
         .finally(()=> {
             setIsLoading(false);
         })
-    }, [taskList, url])
+    }, [taskList, url]);
+
+    const newTask = {
+      name: title, content, id_user: owner 
+    }
     
     const submitTask = async (event: any) => {
       event.preventDefault(); 
       try {
-        await axios.post(url, {
-          name: title, content, id_user: owner // incluir via backend rota para usar owner
-        });
+        await axios.post(url, newTask); // incluir via backend rota para usar owner
         } catch (error) {
         console.log(error) //tratar erro
         } finally {
@@ -36,6 +40,19 @@ export function useFetch<Response = unknown>(url: string){
           setContent('');
         }
     }
+
+    const submitEdition = async (event: any) => {
+      event.preventDefault(); 
+      try {
+        await axios.put(`${url}/${event.target.value}`, newTask)
+        } catch (error) {
+        console.log(error) //tratar erro
+        } finally {
+          setTitle(''); 
+          setContent('');
+        }
+    }
+
 
     const deleteAll = async () => {
       try {
@@ -51,23 +68,14 @@ export function useFetch<Response = unknown>(url: string){
         console.log(error)
       }
     }
-
-    const editOne = async ({target}: any) => {
-      try {
-        await axios.put(`${url}/${target.value}`, {
-          name: title, content, id_user: owner 
-        });
-        } catch (error) {
-        console.log(error) 
-      }
-    }
-
+   
     return {  
         isLoading, error, taskList,
         title, setTitle,
         content, setContent,
         owner, setOwner,
         submitTask, deleteAll,
-        deleteOne, editOne 
+        deleteOne,
+        isEditing, setIsEditing, submitEdition
     };
 }
