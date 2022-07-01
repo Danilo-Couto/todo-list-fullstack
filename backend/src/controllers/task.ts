@@ -34,12 +34,25 @@ export class TaskController {
         return res.json(tasks);
     }
 
-    async findById(req: Request, res: Response){
+    async findOne(req: Request, res: Response){
         const { id } = req.params;
-        const product = await prismaClient.task.findUnique({
+        const task = await prismaClient.task.findUnique({
             where: {id: +id},
             include: {TaskUser: true}
         })
-        return res.json(product);
+        return res.json(task);
+    }
+
+    async deleteOne(req: Request, res: Response){
+        const { id } = req.params;
+        const task = await prismaClient.task.delete({
+            where: {id: +id},
+        })
+        return res.json(task);
+    }
+
+    async deleteAll(_req: Request, res: Response){
+        const task = await prismaClient.task.deleteMany()
+        return res.json(task);
     }
 }
