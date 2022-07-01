@@ -1,5 +1,5 @@
-export function DeleteOneButton({deleteOne, id}:any){
+export function DeleteOneButton({deleteTask, id}:any){
   return (
-    <button type="button" onClick={deleteOne} value={id}>Delete Task</button>
+    <button type="button" onClick={deleteTask} value={id}>Delete Task</button>
   );
 }
