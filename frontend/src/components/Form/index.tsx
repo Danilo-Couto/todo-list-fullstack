@@ -1,8 +1,7 @@
 import { Inputs } from '../Inputs';
 
-export function Form({...propsComing}: any) {
-  const props = {...propsComing}
-  const {submitTask, deleteAll} = propsComing;
+export function Form({...props}: any) {
+  const {submitTask, deleteAll} = props;
 
   return (
     <>

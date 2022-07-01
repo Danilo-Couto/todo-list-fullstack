@@ -1,8 +1,4 @@
-interface IOwnerInput {
-  addOwner: any;
-  owner: string;
-}
-export function OwnerInput({addOwner, owner}:IOwnerInput) {
+export function OwnerInput({addOwner, owner}: any) {
   return (
     <label> Escolha o responsável:
     <select onChange={addOwner} required value={owner}>

@@ -1,15 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+const url = 'http://localhost:4003/task'
 
-export function useFetch<Response = unknown>(url: string){
-    const [taskList, setTaskList] = useState<Response | null[]>([]);
+export function useFetch<Response = unknown>(){
+  
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<Error | null>(null)
-
+  
+    const [taskList, setTaskList] = useState<Response | null[]>([]);
     const [title, setTitle] = useState('');  
     const [content, setContent] = useState(''); 
     const [owner, setOwner] = useState('Danilo'); 
-
     const [isEditing, setIsEditing] = useState(false);
     
     // buscar sobre stale while revalidation
@@ -23,7 +24,7 @@ export function useFetch<Response = unknown>(url: string){
         .finally(()=> {
             setIsLoading(false);
         })
-    }, [taskList, url]);
+    }, [taskList]);
 
     const newTask = {
       name: title, content, id_user: owner 
@@ -52,7 +53,6 @@ export function useFetch<Response = unknown>(url: string){
           setContent('');
         }
     }
-
 
     const deleteAll = async () => {
       try {

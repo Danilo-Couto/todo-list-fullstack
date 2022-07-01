@@ -1,17 +1,18 @@
 import { Inputs } from "../Inputs";
+import { OkEditButton } from "../Buttons/OkEditButton";
+import { CancelEditButton } from "../Buttons/CancelEditButton";
 
-export function EditForm({...propsComing}: any) {
-  const props = {...propsComing}
-  const {submitEdition, setIsEditing} = propsComing;
+export function EditForm({...props}: any) {
+  const {submitEdition} = props;
 
   return (
     <>
       <h2>Editing Task</h2>
       <form onSubmit={submitEdition}>
         <Inputs {...props} />
-         <button type="submit">Concluir</button>
-         <button type="button" onClick={() => {setIsEditing(false)}}>Cancelar</button>
-      </form>  
+        <OkEditButton/>
+        <CancelEditButton {...props}/>
+      </form> 
       </>
   );
 }
