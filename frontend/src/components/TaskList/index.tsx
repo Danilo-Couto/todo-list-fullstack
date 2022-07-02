@@ -3,28 +3,23 @@ import TaskItem from "./TaskItem";
 
 const url = 'http://localhost:4003/task';
 
-export function TaskList({ 
-  taskList, title, setTitle,
-  content, setContent,
-  owner, setOwner}: any) { 
+export function TaskList({ taskList, setTitle, setContent, setOwner}: any) { 
 
-  const editTask = async (id: any, newTask: any) => {
-    console.log('editar')
-    // try {
-    //   await axios.put(`${url}/${id}`, newTask)
-    //   } catch (error) {
-    //   console.log(error) //tratar erro
-    //   } finally {
-    //     setTitle(''); 
-    //     setContent('');
-    //     setOwner(undefined);
-    //   }
+  const editTask = async (id: any, editedTask: any) => {
+    console.log(id)
+    try {
+      await axios.put(`${url}/${id}`, editedTask)
+      } catch (error) {
+      console.log(error)
+      } finally {
+        setTitle(''); 
+        setContent('');
+        setOwner(undefined);
+      }
   }
 
-  const deleteTask = async (id: any) => {
-    console.log('editar')
-      // await axios.delete(`${url}/${id}`)
-  }
+  const deleteTask = async (id: any) => await axios.delete(`${url}/${id}`)
+
   const todosList = taskList.map((task: any)=> (
     <TaskItem
       editTask={editTask}
@@ -34,6 +29,7 @@ export function TaskList({
       title={task.name}
       content={task.content}
       owner={task.TaskUser}
+      taskList={taskList}
     />
   ));
 

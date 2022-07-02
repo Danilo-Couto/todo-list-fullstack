@@ -1,36 +1,40 @@
 import { useState } from "react";
+import { Inputs } from "../../Inputs";
 
-function TaskItem({ editTask, deleteTask, key, id, title, content, owner
+function TaskItem({ editTask, deleteTask, key, id, title, content, owner, taskList
 }: any) {
 
-  // const newTask = {
-  //   name: title, content, id_user: Number(owner) 
-  // }
- 
   const [isEditing, setIsEditing] = useState(false);
-  // const [task, setTask] = useState(taskList);
+  const [editedTitle, setTitle] = useState('');  
+  const [editedContent, setContent] = useState(''); 
+  const [editedOwner, setOwner] = useState(undefined); 
 
-  const deleteClick = (e:any) => deleteTask(e.target.id);
+  const editedTask = {
+    name: editedTitle, editedContent, id_user: Number(editedOwner) 
+  }
+ 
+  const deleteClick = ({target}: any) => deleteTask(target.value);
 
-  const toogleEditForm = () => setIsEditing(isEditing);
+  const toogleEditForm = () => setIsEditing(!isEditing);
   
-  const editClick = (e: any) => {
+  const sendEdition = (e: any) => {
     e.preventDefault();
-    editTask(id, /* newTask */);
+    editTask(id, editedTask);
     toogleEditForm();
   };
-  
-  // const handleChange = (e: any) => setTask(e.target.value);
 
+  const idOwner = owner.map((id: { id_user: any; })=> id.id_user)
+  
   const viewTask = (
     <>
     <h3>Tarefa</h3>
       <ul key={key} className="todo-list" >
+        <li>{id}</li>
         <li>{title}</li>
         <li>{content}</li>
-        <li>{owner.map((id: { id_user: any; })=> id.id_user)}</li>
+        <li>{idOwner}</li>
         <button type="button" onClick={deleteClick} value={id}>Deletar tarefa</button>
-        <button type="button" onClick={editClick}>Editar tarefa</button>
+        <button type="button" onClick={toogleEditForm}>Editar tarefa</button>
     </ul>
   </>
 );
@@ -38,13 +42,14 @@ function TaskItem({ editTask, deleteTask, key, id, title, content, owner
   const editingForm = (
     <div className="">
       <p>editando tarefa</p>
-      {/* <form className="" onSubmit={handleUpdate}>
-        <input onChange={handleChange} value={taskList.name} type="text" />
-        <button>Save</button>
-      </form> */}
+      <form className="" onSubmit={sendEdition}>
+        <Inputs {...{setTitle, setContent, setOwner, title, content, idOwner }} />
+        <button type="submit">Salvar</button>
+      </form>
       </div>
   )
 
   return isEditing ? editingForm : viewTask
 }
+
 export default TaskItem;

@@ -1,4 +1,4 @@
-export function Fields({addTitle, title, addContent, content, addOwner, owner}: any) {
+export function InputFields({addTitle, title, addContent, content, addOwner, owner}: any) {
   return (
     <>
     <input type="text" required placeholder="Adicione uma tarefa" onChange={addTitle} value={title} />

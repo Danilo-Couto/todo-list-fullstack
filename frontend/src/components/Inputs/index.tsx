@@ -1,6 +1,6 @@
-import { Fields } from "./Fields";
+import { InputFields } from "./InputFields";
 
-export function Inputs({setTitle, setContent, setOwner, title, content, owner}: any) {
+export function Inputs({setTitle, setContent, setOwner}: any) {
   
   const addTitle = ({target}: any) => setTitle(target.value);
   const addContent = ({target}: any) => setContent(target.value);
@@ -8,7 +8,7 @@ export function Inputs({setTitle, setContent, setOwner, title, content, owner}: 
 
   return (
     <>
-    <Fields {...{addTitle, addContent, addOwner, title, content, owner}}/>
+    <InputFields {...{addTitle, addContent, addOwner}}/>
     </>
   );
 }
