@@ -1,28 +1,20 @@
-import { EditForm } from './components/EditForm';
 import { Form } from './components/Form';
 import { TaskList } from './components/TaskList';
 import { useFetch } from './hooks/useFetch';
 
-function Todo() {
-  const {...props } = useFetch();
-  const { isLoading, isEditing } = props; 
+function App() {
+  const {isLoading, ...props } = useFetch();
 
   return (
     <>
-      <div className="todo-wrapper">
+      <div className="App-wrapper">
+        <h1>Lista de Tarefas</h1>
         {isLoading && <p>Loading</p>}
-        {isEditing 
-        ? <EditForm {...props}/>
-        : 
-        <>
-        <h1>To Do List</h1>
-        <Form {...props} />
+        <Form />
         <TaskList {...props} />
-        </>
-      }
       </div>
     </>
   );
 }
 
-export default Todo;
+export default App;
