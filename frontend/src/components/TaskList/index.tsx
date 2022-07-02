@@ -1,19 +1,41 @@
-import { DeleteOneButton } from "../Buttons/DeleteOneButton";
-import { EditOneButton } from "../Buttons/EditOneButton";
+import axios from "axios";
+import TaskItem from "./TaskItem";
 
-export function TaskList({taskList, deleteOne, setIsEditing}:any) {
+const url = 'http://localhost:4003/task';
+
+export function TaskList({ taskList, setTitle, setContent, setOwner}: any) { 
+
+  const editTask = async (id: any, editedTask: any) => {
+    try {
+      await axios.put(`${url}/${id}`, editedTask)
+      } catch (error) {
+      console.log(error)
+      } finally {
+        setTitle(''); 
+        setContent('');
+        setOwner(undefined);
+      }
+  }
+
+  const deleteTask = async (id: any) => await axios.delete(`${url}/${id}`)
+
+  const todosList = taskList.map((task: any)=> (
+    <TaskItem
+      editTask={editTask}
+      deleteTask={deleteTask}
+      key={task.id}
+      id={task.id}
+      title={task.name}
+      content={task.content}
+      owner={task.TaskUser}
+      taskList={taskList}
+    />
+  ));
 
   return (
-    <> 
-      {taskList?.map(({id, name, content, TaskUser}: any, index: any) => (
-        <ul key={index} className="todo-list" >
-            <li>{name}</li>
-            <li>{content}</li>
-            <li>{TaskUser.map((user: { id_user: any; }) => user.id_user)}</li>
-          <DeleteOneButton deleteOne={deleteOne} id={id}/>
-          <EditOneButton setIsEditing={setIsEditing} id={id}/>
-      </ul>
-        ))}
+    <>
+    <h3>Lista de Tarefas</h3>
+    <ul>{todosList}</ul>
     </>
   );
 }

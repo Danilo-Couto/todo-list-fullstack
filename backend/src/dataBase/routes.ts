@@ -9,11 +9,11 @@ const task = new TaskController(); // passar prismaClient por arg
 const user = new UserController(); 
 const taskUser = new TaskUserController(); 
 
-
 router.post('/task', task.create);
 router.get('/task', task.findAll);
 router.get('/task/:id', task.findOne);
-router.post('/taskwithuser', task.createWithUser);
+// router.post('/taskwithuser', task.createWithUser);
+router.put('/task/:id', task.updateOne);
 
 router.delete('/task/', task.deleteAll);
 router.delete('/task/:id', task.deleteOne);

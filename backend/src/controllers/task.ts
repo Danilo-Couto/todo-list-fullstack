@@ -1,35 +1,48 @@
 import prismaClient from "../dataBase/prismaClient"
 import { Request, Response } from 'express';
 
-export class TaskController {
-    async create(req: Request, res: Response){
-        const { name, content } = req.body;
-
-        const task = await prismaClient.task.create({
-           data: {name, content}
-        });
-        return res.json(task);
+const select =  {
+    id: true,
+    name: true, 
+    content: true,
+    TaskUser: {
+        select: { id: true, id_user: true }
     }
-
-    async createWithUser(req: Request, res: Response){
-        const { name, content, id_user} = req.body;
-
+}
+export class TaskController {
+    
+    async create(req: Request, res: Response){
+        const { name, content, userId} = req.body;
         const task = await prismaClient.taskUser.create({
             data: { 
-                task: {
-                    create: { name, content }
-                },
-            user: {
-                connect: { id: id_user }
-             }
+                task: { create: { name, content } },
+                user: { connect: { id: userId } }
             }
         });
-        return res.json(task);
+        return res.json({'task created': task});
+    }
+
+    async updateOne(req: Request, res: Response){
+        const { id } = req.params;
+        const { name, editedContent, taskId } = req.body;
+        const task = await prismaClient.task.update({
+            where: {id: Number(id)},          
+            data: {
+                name,
+                content: editedContent,
+                TaskUser: { 
+                    connect: {
+                        id: taskId
+                    }
+                },
+            }
+        })
+        return res.json({'task updated': task});
     }
 
     async findAll(_req: Request, res: Response){
         const tasks = await prismaClient.task.findMany({
-            include: {TaskUser: true}
+            select
         })
         return res.json(tasks);
     }
@@ -38,7 +51,7 @@ export class TaskController {
         const { id } = req.params;
         const task = await prismaClient.task.findUnique({
             where: {id: +id},
-            include: {TaskUser: true}
+            select
         })
         return res.json(task);
     }

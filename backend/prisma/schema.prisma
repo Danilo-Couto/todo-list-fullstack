@@ -16,8 +16,7 @@ model Task {
   name       String
   content    String
   created_at DateTime @default(now())
-
-  TaskUser TaskUser[]
+  TaskUser   TaskUser[]
   @@map("tasks")
 }
 
@@ -27,17 +26,16 @@ model User {
   email    String @unique
   password String
   role     String
-
   TaskUser TaskUser[]
   @@map("users")
 }
 
-model TaskUser {
+model     TaskUser {
   id      Int  @id @default(autoincrement())
   id_task Int
-  task    Task @relation(fields: [id_task], references: [id], onDelete: Cascade)
+  task    Task @relation(fields: [id_task], references: [id], onDelete: Cascade, onUpdate: Cascade)
   id_user Int
-  user    User @relation(fields: [id_user], references: [id], onDelete: Cascade)
+  user    User @relation(fields: [id_user], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@map("task_user")
 }
