@@ -6,25 +6,17 @@ const select =  {
     name: true, 
     content: true,
     TaskUser: {
-        select: { id_user: true }
+        select: { id: true, id_user: true }
     }
 }
 export class TaskController {
-    // async create(req: Request, res: Response){
-    //     const { name, content } = req.body;
-    //     const task = await prismaClient.task.create({
-    //        data: {name, content}
-    //     });
-    //     return res.json(task);
-    // }
-
+    
     async create(req: Request, res: Response){
-        const { name, content, id_user} = req.body;
-        console.log(req.body)
+        const { name, content, userId} = req.body;
         const task = await prismaClient.taskUser.create({
             data: { 
                 task: { create: { name, content } },
-                user: { connect: { id: id_user } }
+                user: { connect: { id: userId } }
             }
         });
         return res.json({'task created': task});
@@ -32,15 +24,16 @@ export class TaskController {
 
     async updateOne(req: Request, res: Response){
         const { id } = req.params;
-        console.log(id)
-        const { name, content, id_user } = req.body;
+        const { name, editedContent, taskId } = req.body;
         const task = await prismaClient.task.update({
-            where: {id: +id},          
+            where: {id: Number(id)},          
             data: {
                 name,
-                content,
+                content: editedContent,
                 TaskUser: { 
-                    update: id_user,
+                    connect: {
+                        id: taskId
+                    }
                 },
             }
         })
@@ -49,7 +42,7 @@ export class TaskController {
 
     async findAll(_req: Request, res: Response){
         const tasks = await prismaClient.task.findMany({
-            select,
+            select
         })
         return res.json(tasks);
     }
