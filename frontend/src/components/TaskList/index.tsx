@@ -6,7 +6,6 @@ const url = 'http://localhost:4003/task';
 export function TaskList({ taskList, setTitle, setContent, setOwner}: any) { 
 
   const editTask = async (id: any, editedTask: any) => {
-    console.log(id)
     try {
       await axios.put(`${url}/${id}`, editedTask)
       } catch (error) {

@@ -45,6 +45,7 @@ function TaskItem({ editTask, deleteTask, key, id, title, content, owner, taskLi
       <form className="" onSubmit={sendEdition}>
         <Inputs {...{setTitle, setContent, setOwner, title, content, idOwner }} />
         <button type="submit">Salvar</button>
+        <button type="button" onClick={toogleEditForm}>Cancelar</button>
       </form>
       </div>
   )
