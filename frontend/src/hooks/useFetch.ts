@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const url = 'http://localhost:4003/task';
+const url = 'http://localhost:4003/task'
 export function useFetch<Response = unknown>(){
   
     const [isLoading, setIsLoading] = useState(true);

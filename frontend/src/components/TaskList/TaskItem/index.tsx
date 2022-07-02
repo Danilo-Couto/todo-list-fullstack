@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function TaskItem({ editTask, deleteTask, taskList,  
+function TaskItem({ editTask, deleteTask, key, id, title, content, owner
 }: any) {
 
   // const newTask = {
@@ -8,7 +8,7 @@ function TaskItem({ editTask, deleteTask, taskList,
   // }
  
   const [isEditing, setIsEditing] = useState(false);
-  const [task, setTask] = useState(taskList);
+  // const [task, setTask] = useState(taskList);
 
   const deleteClick = (e:any) => deleteTask(e.target.id);
 
@@ -16,20 +16,20 @@ function TaskItem({ editTask, deleteTask, taskList,
   
   const editClick = (e: any) => {
     e.preventDefault();
-    editTask(task.id, /* newTask */);
+    editTask(id, /* newTask */);
     toogleEditForm();
   };
   
-  const handleChange = (e: any) => setTask(e.target.value);
+  // const handleChange = (e: any) => setTask(e.target.value);
 
   const viewTask = (
     <>
     <h3>Tarefa</h3>
-      <ul key={taskList.id} className="todo-list" >
-        <li>{taskList.name}</li>
-        <li>{taskList.content}</li>
-        {/* <li>{taskList.TaskUser.map((user: { id_user: any; }) => user.id_user)}</li> */}
-        <button type="button" onClick={deleteClick} value={taskList.id}>Deletar tarefa</button>
+      <ul key={key} className="todo-list" >
+        <li>{title}</li>
+        <li>{content}</li>
+        <li>{owner.map((id: { id_user: any; })=> id.id_user)}</li>
+        <button type="button" onClick={deleteClick} value={id}>Deletar tarefa</button>
         <button type="button" onClick={editClick}>Editar tarefa</button>
     </ul>
   </>
