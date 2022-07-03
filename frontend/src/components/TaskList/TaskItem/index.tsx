@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Inputs } from "../../Inputs";
 
-function TaskItem({ editTask, deleteTask, key, id, title, content, owner, taskList
+function TaskItem({ editTask, deleteTask, key, id, title, content, taskUser
 }: any) {
 
   const [isEditing, setIsEditing] = useState(false);
@@ -10,7 +10,10 @@ function TaskItem({ editTask, deleteTask, key, id, title, content, owner, taskLi
   const [editedOwner, setOwner] = useState(undefined); 
 
   const editedTask = {
-    name: editedTitle, editedContent, id_user: Number(editedOwner) 
+    name: editedTitle,
+    editedContent,
+    userId: Number(editedOwner),
+    taskId: taskUser.id
   }
  
   const deleteClick = ({target}: any) => deleteTask(target.value);
@@ -23,16 +26,13 @@ function TaskItem({ editTask, deleteTask, key, id, title, content, owner, taskLi
     toogleEditForm();
   };
 
-  const idOwner = owner.map((id: { id_user: any; })=> id.id_user)
-  
   const viewTask = (
     <>
     <h3>Tarefa</h3>
       <ul key={key} className="todo-list" >
-        <li>{id}</li>
         <li>{title}</li>
         <li>{content}</li>
-        <li>{idOwner}</li>
+        <li>{taskUser.taskId}</li>
         <button type="button" onClick={deleteClick} value={id}>Deletar tarefa</button>
         <button type="button" onClick={toogleEditForm}>Editar tarefa</button>
     </ul>
@@ -43,7 +43,7 @@ function TaskItem({ editTask, deleteTask, key, id, title, content, owner, taskLi
     <div className="">
       <p>editando tarefa</p>
       <form className="" onSubmit={sendEdition}>
-        <Inputs {...{setTitle, setContent, setOwner, title, content, idOwner }} />
+        <Inputs {...{setTitle, setContent, setOwner, title, content }} />
         <button type="submit">Salvar</button>
         <button type="button" onClick={toogleEditForm}>Cancelar</button>
       </form>

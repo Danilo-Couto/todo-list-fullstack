@@ -1,9 +1,19 @@
 {
     "compilerOptions": {
       "sourceMap": true,
-      "outDir": "dist",
+      "outDir": "./dist",
+      "rootDir": "./src",
       "strict": true,
       "lib": ["esnext"],
-      "esModuleInterop": true
+      "esModuleInterop": true,
+      "target": "ES6",
+      "allowJs": true,
+      "removeComments": true,
+      "baseUrl": "*.*",
+      "paths": {
+        "@controllers/*": ["./src/controllers"],
+        "@services/*": ["./src/services"],
+        "@models/*": ["./src/models"]
+      }
     }
   }

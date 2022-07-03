@@ -8,7 +8,7 @@ export function useFetch<Response = unknown>(){
     const [error, setError] = useState<Error | null>(null)
     
     const [taskList, setTaskList] = useState<Response | null[]>([]);
- 
+    
     // buscar sobre stale while revalidation
     useEffect(()=> {
       axios.get(url).then(res => {
