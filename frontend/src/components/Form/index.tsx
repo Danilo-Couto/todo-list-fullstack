@@ -4,14 +4,14 @@ import { Inputs } from '../Inputs';
 
 const url = 'http://localhost:4003/task'
 
-export function Form() {
+export function Form({loadPage, setLoadPage}: any) {
   
-  const [title, setTitle] = useState('');  
-  const [content, setContent] = useState(''); 
+  const [title, setTitle] = useState();  
+  const [content, setContent] = useState(); 
   const [owner, setOwner] = useState(undefined); 
 
   const newTask = {
-    name: title, content, id_user: Number(owner) 
+    name: title, content, userId: Number(owner) 
   }
   
   const createTask = async (event: any) => {
@@ -20,10 +20,6 @@ export function Form() {
       await axios.post(url, newTask); 
     } catch (error) {
     console.log(error) //tratar erro
-    } finally {
-      setTitle(''); 
-      setContent('');
-      setOwner(undefined);
     }
   }
 
