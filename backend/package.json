@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon src/dataBase/server.ts",
+    "dev": "ts-node-dev --respawn --transpile-only src/dataBase/server.ts",
     "studio": "npx prisma studio",
     "migrate": "npx prisma migrate dev",
     "lint": "npx eslint"
@@ -32,6 +32,7 @@
     "cors": "^2.8.5",
     "express": "^4.18.1",
     "react-query": "^3.39.1",
+    "ts-node-dev": "^2.0.0",
     "typescript-express-starter": "^9.1.2"
   }
 }
