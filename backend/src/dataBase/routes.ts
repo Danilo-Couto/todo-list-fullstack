@@ -1,29 +1,23 @@
 import { Router } from 'express';
-import { UserController } from '../controllers/user';
-import { TaskController } from "../controllers/task";
-import { TaskUserController } from '../controllers/taskUser';
+import { createTask, deleteAll, deleteOne, findAll, findOne, updateOne } from '../controllers/taskController';
+import { createTaskUser } from '../controllers/taskUserController';
+import { createUser, findAllUser, findByIdUser } from '../controllers/userController';
+import { findAllTaskUserModel } from '../model/taskUserModel';
 
 const router = Router();
 
-const task = new TaskController(); // passar prismaClient por arg
-const user = new UserController(); 
-const taskUser = new TaskUserController(); 
+router.get('/task/:id', findOne);
+router.put('/task/:id', updateOne);
+router.delete('/task/:id', deleteOne);
+router.post('/task', createTask);
+router.get('/task', findAll);
+router.delete('/task/', deleteAll);
 
-router.post('/task', task.create);
-router.get('/task', task.findAll);
-router.get('/task/:id', task.findOne);
-// router.post('/taskwithuser', task.createWithUser);
-router.put('/task/:id', task.updateOne);
+router.get('/user/:id', findByIdUser);
+router.post('/user', createUser);
+router.get('/user', findAllUser);
 
-router.delete('/task/', task.deleteAll);
-router.delete('/task/:id', task.deleteOne);
-
-router.post('/user', user.create);
-router.get('/user', user.findAll);
-router.get('/user/:id', user.findById);
-
-router.post('/taskuser', taskUser.create);
-router.get('/taskuser', taskUser.findAll);
-
+router.post('/taskuser', createTaskUser);
+router.get('/taskuser', findAllTaskUserModel);
 
 export default router;
