@@ -8,7 +8,6 @@
     "dev": "ts-node-dev  -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules src/dataBase/server.ts",
     "studio": "npx prisma studio",
     "migrate": "npx prisma migrate dev",
-    "lint": "npx eslint"
   },
   "keywords": [],
   "author": "",
@@ -18,9 +17,6 @@
     "@types/node": "^18.0.0",
     "@types/react": "^18.0.14",
     "@types/react-dom": "^18.0.5",
-    "@typescript-eslint/eslint-plugin": "^5.30.0",
-    "@typescript-eslint/parser": "^5.30.0",
-    "eslint": "^8.18.0",
     "nodemon": "^2.0.18",
     "prisma": "^4.0.0",
     "ts-node": "^10.8.1",
