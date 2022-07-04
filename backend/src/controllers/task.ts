@@ -11,16 +11,16 @@ export default class TaskController {
   //   return res.json({ 'task created': task });
   // }
 
+  findAll = async(_req: Request, res: Response) => {
+    const tasks = await this.taskModel.findAll();
+    return res.json({ 'tasks': tasks });
+  }
+
   async updateOne(req: Request, res: Response) {
     const { id } = req.params;
     const { name, editedContent, taskId } = req.body;
     const task = this.taskModel.updateOne(+id, name, editedContent, taskId);
     return res.json({ 'task updated': task });
-  }
-
-   findAll = async(_req: Request, res: Response) => {
-    const tasks = this.taskModel.findAll();
-    return res.json({ 'tasks': tasks });
   }
 
   async findOne(req: Request, res: Response) {

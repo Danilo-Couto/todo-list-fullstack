@@ -12,7 +12,7 @@ const select = {
 export default class TaskModel {
 
   async findAll() {
-    const tasks = await prismaClient.task.findMany()
+    const tasks = await prismaClient.task.findMany({select})
     return tasks;
   }
 
