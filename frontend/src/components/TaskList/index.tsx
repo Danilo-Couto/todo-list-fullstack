@@ -3,7 +3,7 @@ import TaskItem from "./TaskItem";
 
 const url = 'http://localhost:4003/task';
 
-export function TaskList({ taskList}: any) { 
+export function TaskList({taskList}: any) { 
 
   const editTask = async (id: any, editedTask: any) => {
     try {
@@ -13,9 +13,10 @@ export function TaskList({ taskList}: any) {
       }
   }
 
-  const deleteTask = async (id: any) => await axios.delete(`${url}/${id}`)
-
-  const todosList = taskList.map((task: any)=> (
+  // console.log(taskList && taskList)
+  
+  const deleteTask = async (id: any) => await axios.delete(`${url}/${id}`);
+  const todosList = taskList && taskList.map((task: any)=> (
     <TaskItem
       editTask={editTask}
       deleteTask={deleteTask}
@@ -23,7 +24,8 @@ export function TaskList({ taskList}: any) {
       id={task.id}
       title={task.name}
       content={task.content}
-      taskUser={task.TaskUser[0]}
+      status={task.status}
+      taskUser={task.userId}
       taskList={taskList}
     />
   ));
@@ -31,7 +33,7 @@ export function TaskList({ taskList}: any) {
   return (
     <>
       <h3>Lista de Tarefas</h3>
-      <ul>{todosList}</ul>
+      <ul>{todosList && todosList}</ul>
     </>
   );
 }

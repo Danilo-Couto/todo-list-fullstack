@@ -9,11 +9,14 @@ export function Form({loadPage, setLoadPage}: any) {
   const [title, setTitle] = useState();  
   const [content, setContent] = useState(); 
   const [owner, setOwner] = useState(undefined); 
+  const [status, setStatus] = useState(undefined); 
 
   const newTask = {
-    name: title, content, userId: Number(owner) 
+    name: title, content, owner, status 
   }
   
+  // console.log(status)
+
   const createTask = async (event: any) => {
     event.preventDefault(); 
     try {
@@ -28,7 +31,7 @@ export function Form({loadPage, setLoadPage}: any) {
   return (
     <>
       <form onSubmit={createTask}>
-      <Inputs {...{setTitle, setContent, setOwner}} />
+      <Inputs {...{setTitle, setContent, setOwner, setStatus}} />
         <button type="submit">Adicionar Tarefa</button>
         <button type="button" onClick={deleteAllTasks}>Excluir Tudo</button>
     </form>  

@@ -1,19 +1,21 @@
 import { useState } from "react";
 import { Inputs } from "../../Inputs";
 
-function TaskItem({ editTask, deleteTask, key, id, title, content, taskUser
+function TaskItem({ editTask, deleteTask, key, id, title, content, status, userId
 }: any) {
 
   const [isEditing, setIsEditing] = useState(false);
   const [editedTitle, setTitle] = useState('');  
   const [editedContent, setContent] = useState(''); 
   const [editedOwner, setOwner] = useState(undefined); 
+  const [editedStatus, setStatus] = useState(undefined); 
 
   const editedTask = {
     name: editedTitle,
     editedContent,
-    userId: Number(editedOwner),
-    taskId: taskUser.id
+    status: editedStatus,
+    owner: editedOwner,
+    // taskId: taskUser.id
   }
  
   const deleteClick = ({target}: any) => deleteTask(target.value);
@@ -28,11 +30,11 @@ function TaskItem({ editTask, deleteTask, key, id, title, content, taskUser
 
   const viewTask = (
     <>
-    <h3>Tarefa</h3>
+    <h4>tarefa: {title}</h4>
       <ul key={key} className="todo-list" >
-        <li>{title}</li>
-        <li>{content}</li>
-        <li>{taskUser.taskId}</li>
+        <li>descrição: {content}</li>
+        <li>responsável: {userId}</li>
+        <li>status: {status}</li>
         <button type="button" onClick={deleteClick} value={id}>Deletar tarefa</button>
         <button type="button" onClick={toogleEditForm}>Editar tarefa</button>
     </ul>
@@ -43,7 +45,10 @@ function TaskItem({ editTask, deleteTask, key, id, title, content, taskUser
     <div className="">
       <p>editando tarefa</p>
       <form className="" onSubmit={sendEdition}>
-        <Inputs {...{setTitle, setContent, setOwner, title, content }} />
+        <Inputs {...{
+          setTitle, setContent, setStatus, title, content,
+          status, setOwner, editedStatus
+        }} />
         <button type="submit">Salvar</button>
         <button type="button" onClick={toogleEditForm}>Cancelar</button>
       </form>

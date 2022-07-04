@@ -14,9 +14,9 @@ export default class TaskModel {
     return task;
   }
   
-  async create(name: string, content: string, status: string, userId: number) {
+  async create(name: string, content: string, status: string, owner: number,) {
     const task = await prismaClient.task.create({
-      data: { name, content, status, userId } ,
+      data: { name, content, status, userId: owner } ,
     });
     return task;
   }
