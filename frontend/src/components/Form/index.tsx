@@ -23,9 +23,7 @@ export function Form({loadPage, setLoadPage}: any) {
     }
   }
 
-  const deleteAllTasks = async () => {
-     await axios.delete(url);
-  }
+  const deleteAllTasks = async () => await axios.delete(url);
 
   return (
     <>
