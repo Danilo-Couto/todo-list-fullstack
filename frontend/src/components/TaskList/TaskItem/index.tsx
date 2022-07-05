@@ -1,21 +1,22 @@
 import { useState } from "react";
 import { Inputs } from "../../Inputs";
 
-function TaskItem({ editTask, deleteTask, key, id, title, content, taskUser
+function TaskItem({ editTask, deleteTask, key, id, title, content, status, owner, createdAt
 }: any) {
 
   const [isEditing, setIsEditing] = useState(false);
   const [editedTitle, setTitle] = useState('');  
   const [editedContent, setContent] = useState(''); 
   const [editedOwner, setOwner] = useState(undefined); 
+  const [editedStatus, setStatus] = useState(undefined); 
 
   const editedTask = {
     name: editedTitle,
     editedContent,
-    userId: Number(editedOwner),
-    taskId: taskUser.id
+    status: editedStatus,
+    owner: editedOwner,
   }
- 
+
   const deleteClick = ({target}: any) => deleteTask(target.value);
 
   const toogleEditForm = () => setIsEditing(!isEditing);
@@ -25,17 +26,18 @@ function TaskItem({ editTask, deleteTask, key, id, title, content, taskUser
     editTask(id, editedTask);
     toogleEditForm();
   };
-
+ 
   const viewTask = (
     <>
-    <h3>Tarefa</h3>
-      <ul key={key} className="todo-list" >
-        <li>{title}</li>
-        <li>{content}</li>
-        <li>{taskUser.taskId}</li>
+    <h4>{title}</h4>
+      <div key={key} className="todo-list" >
+        <p>descrição: {content}</p>
+        <p>responsável: {owner}</p>
+        <p>status: {status}</p>
+        <p>criada em: {new Date(createdAt).toLocaleDateString('pt-BR', {timeZone: 'UTC'})}</p>
         <button type="button" onClick={deleteClick} value={id}>Deletar tarefa</button>
         <button type="button" onClick={toogleEditForm}>Editar tarefa</button>
-    </ul>
+    </div>
   </>
 );
 
@@ -43,7 +45,10 @@ function TaskItem({ editTask, deleteTask, key, id, title, content, taskUser
     <div className="">
       <p>editando tarefa</p>
       <form className="" onSubmit={sendEdition}>
-        <Inputs {...{setTitle, setContent, setOwner, title, content }} />
+        <Inputs {...{
+          setTitle, setContent, setStatus, title, content,
+          status, setOwner, editedStatus
+        }} />
         <button type="submit">Salvar</button>
         <button type="button" onClick={toogleEditForm}>Cancelar</button>
       </form>

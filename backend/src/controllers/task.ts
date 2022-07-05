@@ -1,71 +1,43 @@
-import prismaClient from "../dataBase/prismaClient"
 import { Request, Response } from 'express';
+import TaskModel from '../models/task';
 
-const select =  {
-    id: true,
-    name: true, 
-    content: true,
-    TaskUser: {
-        select: { id: true, id_user: true }
-    }
-}
-export class TaskController {
-    
-    async create(req: Request, res: Response){
-        const { name, content, userId} = req.body;
-        const task = await prismaClient.taskUser.create({
-            data: { 
-                task: { create: { name, content } },
-                user: { connect: { id: userId } }
-            }
-        });
-        return res.json({'task created': task});
-    }
+export default class TaskController {
+  constructor(private taskModel= new TaskModel()){
+  }
 
-    async updateOne(req: Request, res: Response){
-        const { id } = req.params;
-        const { name, editedContent, taskId } = req.body;
-        const task = await prismaClient.task.update({
-            where: {id: Number(id)},          
-            data: {
-                name,
-                content: editedContent,
-                TaskUser: { 
-                    connect: {
-                        id: taskId
-                    }
-                },
-            }
-        })
-        return res.json({'task updated': task});
-    }
+  findAll = async(_req: Request, res: Response) => {
+    const tasks = await this.taskModel.findAll();
+    return res.json({ 'tasks': tasks });
+  }
 
-    async findAll(_req: Request, res: Response){
-        const tasks = await prismaClient.task.findMany({
-            select
-        })
-        return res.json(tasks);
-    }
+  findOne = async(req: Request, res: Response) => {
+    const { id } = req.params;
+    const task = await this.taskModel.findOne(+id);
+    return res.json({ 'task': task });
+  }
 
-    async findOne(req: Request, res: Response){
-        const { id } = req.params;
-        const task = await prismaClient.task.findUnique({
-            where: {id: +id},
-            select
-        })
-        return res.json(task);
-    }
+  create = async(req: Request, res: Response) => {
+    const { name, content, status, userId } = req.body;
+    const task = await this.taskModel.create(name, content, status, userId);
+    return res.json({ 'task created': task });
+  }
 
-    async deleteOne(req: Request, res: Response){
-        const { id } = req.params;
-        const task = await prismaClient.task.delete({
-            where: {id: +id},
-        })
-        return res.json(task);
-    }
+  updateOne = async(req: Request, res: Response) => {
+    const { id } = req.params;
+    const { name, editedContent, status, owner } = req.body;
 
-    async deleteAll(_req: Request, res: Response){
-        const task = await prismaClient.task.deleteMany()
-        return res.json(task);
-    }
+    const task = await this.taskModel.updateOne(+id, name, editedContent, status, owner);
+    return res.json({ 'task updated': task });
+  }
+
+  deleteOne = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const task = await this.taskModel.deleteOne(+id);
+    return res.json({ 'deleted task': task });
+  }
+
+  deleteAll = async(_req: Request, res: Response) => {
+    await this.taskModel.deleteAll();
+    return res.json('all tasks deleted');
+  }
 }

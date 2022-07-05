@@ -9,7 +9,6 @@ function App() {
     <>
       <div className="App-wrapper">
         <h1>Lista de Tarefas</h1>
-        {isLoading && <p>Loading</p>}
         <Form />
         <TaskList {...props} />
       </div>

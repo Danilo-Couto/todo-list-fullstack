@@ -5,14 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "ts-node-dev  -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules src/dataBase/server.ts",
+    "dev": "nodemon src/dataBase/server.ts",
     "studio": "npx prisma studio",
-    "migrate": "npx prisma migrate dev",
+    "migrate": "npx prisma migrate dev"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/node": "^18.0.0",
     "@types/react": "^18.0.14",
@@ -27,6 +28,7 @@
     "axios": "^0.27.2",
     "cors": "^2.8.5",
     "express": "^4.18.1",
+    "mysql2": "^2.3.3",
     "react-query": "^3.39.1",
     "ts-node-dev": "^2.0.0",
     "tsconfig-paths": "^4.0.0",
