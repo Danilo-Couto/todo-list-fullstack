@@ -23,9 +23,9 @@ export function TaskList({taskList}: any) {
   .sort((a: any, b: any) => a[sort] > b[sort] ? 1 : -1)
    .map((task: any, i: number)=> (
     <TaskItem
+      key={i}
       editTask={editTask}
       deleteTask={deleteTask}
-      key={i}
       id={task.id}
       title={task.name}
       content={task.content}

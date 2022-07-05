@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Inputs } from "../../Inputs";
 
-function TaskItem({ editTask, deleteTask, key, id, title, content, status, owner, createdAt
+function TaskItem({ editTask, deleteTask, id, title, content, status, owner, createdAt
 }: any) {
 
   const [isEditing, setIsEditing] = useState(false);
@@ -30,7 +30,7 @@ function TaskItem({ editTask, deleteTask, key, id, title, content, status, owner
   const viewTask = (
     <>
     <h4>{title}</h4>
-      <div key={key} className="todo-list" >
+      <div key={id} className="todo-list" >
         <p>descrição: {content}</p>
         <p>responsável: {owner}</p>
         <p>status: {status}</p>
