@@ -1,4 +1,4 @@
-# Todo List FullStack
+## Todo List FullStack
 
 Este é meu primeiro projeto full stack como estudante de desenvolvimento web.
 
