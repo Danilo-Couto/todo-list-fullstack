@@ -14,7 +14,7 @@ function TaskItem({ editTask, deleteTask, key, id, title, content, status, owner
     name: editedTitle,
     editedContent,
     status: editedStatus,
-    owner: editedOwner,
+    owner: editedOwner === "Danilo" ? 1 : 2
   }
 
   const deleteClick = ({target}: any) => deleteTask(target.value);

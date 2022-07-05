@@ -11,10 +11,9 @@ export function Form() {
   const [owner, setOwner] = useState(undefined); 
   const [status, setStatus] = useState(undefined); 
 
-  const userId = owner === "Danilo" ? 1 : 2;
-
   const newTask = {
-    name: title, content, userId, status 
+    name: title, content, status,
+    userId: owner === "Danilo" ? 1 : 2 
   }
   
   const createTask = async (event: any) => {
