@@ -18,7 +18,7 @@ export function useFetch(){
       })
       .finally(()=> {
           setIsLoading(false);
-      })
+      });
   }, [taskList]);
 
     return {  

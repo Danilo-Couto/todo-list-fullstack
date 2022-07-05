@@ -12,9 +12,9 @@ export function TaskList({taskList}: any) {
     try {
       await axios.put(`${URL}/${id}`, editedTask)
       } catch (error) {
-      console.log(error)
+      console.log(error);
       }
-  }
+  };
 
   const deleteTask = async (id: any) => await axios.delete(`${URL}/${id}`);
 
