@@ -14,16 +14,16 @@ npm install
 
 ## Stacks Utilizadas
 
-TypeScript
-React
-Node Js
-Express
-Prisma (ORM)
-Nodemon
-Axios
-Cors
-MySQL2
-EsLint
+##### TypeScript
+##### React
+##### Node Js
+##### Express
+##### Prisma (ORM)
+##### Nodemon
+##### Axios
+##### Cors
+##### MySQL2
+#####  EsLint
 
 ## Requisitos técnicos:
 
@@ -51,15 +51,13 @@ Usar tipagens e interfaces
 Criar os testes
 
 
-## Usage
-
-# para rodar frontend
+### para rodar frontend
 
 ```bash
 npm start
 ```
 
-# para rodar backend
+### para rodar backend
 
 ```bash
 npm run dev
