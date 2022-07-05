@@ -1,8 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { URL } from '../../utils/url';
 import { Inputs } from '../Inputs';
-
-const url = 'http://localhost:4003/task'
 
 export function Form() {
   
@@ -19,13 +18,13 @@ export function Form() {
   const createTask = async (event: any) => {
     event.preventDefault(); 
     try {
-      await axios.post(url, newTask); 
+      await axios.post(URL, newTask); 
     } catch (error) {
     console.log(error) //exibir se erro
     }
   }
 
-  const deleteAllTasks = async () => await axios.delete(url);
+  const deleteAllTasks = async () => await axios.delete(URL);
 
   return (
     <>

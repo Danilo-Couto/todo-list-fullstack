@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { URL } from "../utils/url";
 
-const url = 'http://localhost:4003/task'
 export function useFetch(){
   
     const [isLoading, setIsLoading] = useState(true);
@@ -10,7 +10,7 @@ export function useFetch(){
     
     // buscar sobre stale while revalidation
     useEffect(()=> {
-      axios.get(url).then(res => {
+      axios.get(URL).then(res => {
           setTaskList(res.data.tasks)
       })
       .catch(err => {
@@ -18,7 +18,7 @@ export function useFetch(){
       })
       .finally(()=> {
           setIsLoading(false);
-      })
+      });
   }, [taskList]);
 
     return {  

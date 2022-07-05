@@ -1,33 +1,31 @@
 import axios from "axios";
 import { useState } from "react";
+import { URL } from "../../utils/url";
 import { Sorting } from "../Sorting/index";
 import TaskItem from "./TaskItem";
 
-const url = 'http://localhost:4003/task';
-
 export function TaskList({taskList}: any) { 
 
-  const [sort, setSort] = useState([]);
-  // const addSort = ({target}: any) => setSort(target.value); 
+  const [sort, setSort] = useState('createdAt');
 
   const editTask = async (id: any, editedTask: any) => {
     try {
-      await axios.put(`${url}/${id}`, editedTask)
+      await axios.put(`${URL}/${id}`, editedTask)
       } catch (error) {
-      console.log(error)
+      console.log(error);
       }
-  }
+  };
 
-  const deleteTask = async (id: any) => await axios.delete(`${url}/${id}`);
+  const deleteTask = async (id: any) => await axios.delete(`${URL}/${id}`);
 
   const todosList = taskList
    && [...taskList]
-  //  .sort((a: any, b: any) => a[sort] > b[sort] ? 1 : -1)
+  .sort((a: any, b: any) => a[sort] > b[sort] ? 1 : -1)
    .map((task: any, i: number)=> (
     <TaskItem
+      key={i}
       editTask={editTask}
       deleteTask={deleteTask}
-      key={i}
       id={task.id}
       title={task.name}
       content={task.content}

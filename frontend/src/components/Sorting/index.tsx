@@ -1,10 +1,11 @@
 export function Sorting({setSort }: any) {
 
   const sortByInputs = ['tarefa', 'data de criação', 'status'];
-  const sortings = sortByInputs.map((input: any)=> (
-    <option value={input}>{input}</option>
 
+  const sortings = sortByInputs.map((input: any, i: number)=> (
+    <option key={i} value={input}>{input}</option>
   ));
+  
   return (
     <>
       <h4>Filtrar por</h4>
