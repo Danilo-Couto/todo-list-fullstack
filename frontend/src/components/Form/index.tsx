@@ -4,7 +4,7 @@ import { Inputs } from '../Inputs';
 
 const url = 'http://localhost:4003/task'
 
-export function Form({loadPage, setLoadPage}: any) {
+export function Form() {
   
   const [title, setTitle] = useState();  
   const [content, setContent] = useState(); 
@@ -17,14 +17,12 @@ export function Form({loadPage, setLoadPage}: any) {
     name: title, content, userId, status 
   }
   
-  // console.log(owner)
-
   const createTask = async (event: any) => {
     event.preventDefault(); 
     try {
       await axios.post(url, newTask); 
     } catch (error) {
-    console.log(error) //tratar erro
+    console.log(error) //exibir se erro
     }
   }
 

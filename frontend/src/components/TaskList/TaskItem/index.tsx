@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Inputs } from "../../Inputs";
 
-function TaskItem({ editTask, deleteTask, key, id, title, content, status, owner
+function TaskItem({ editTask, deleteTask, key, id, title, content, status, owner, createdAt
 }: any) {
 
   const [isEditing, setIsEditing] = useState(false);
@@ -16,7 +16,7 @@ function TaskItem({ editTask, deleteTask, key, id, title, content, status, owner
     status: editedStatus,
     owner: editedOwner,
   }
- 
+
   const deleteClick = ({target}: any) => deleteTask(target.value);
 
   const toogleEditForm = () => setIsEditing(!isEditing);
@@ -26,7 +26,7 @@ function TaskItem({ editTask, deleteTask, key, id, title, content, status, owner
     editTask(id, editedTask);
     toogleEditForm();
   };
-
+ 
   const viewTask = (
     <>
     <h4>{title}</h4>
@@ -34,6 +34,7 @@ function TaskItem({ editTask, deleteTask, key, id, title, content, status, owner
         <p>descrição: {content}</p>
         <p>responsável: {owner}</p>
         <p>status: {status}</p>
+        <p>criada em: {new Date(createdAt).toLocaleDateString('pt-BR', {timeZone: 'UTC'})}</p>
         <button type="button" onClick={deleteClick} value={id}>Deletar tarefa</button>
         <button type="button" onClick={toogleEditForm}>Editar tarefa</button>
     </div>

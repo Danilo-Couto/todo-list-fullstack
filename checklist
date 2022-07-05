@@ -1,21 +1,21 @@
 Requisitos técnicos:
-Front-End em React;
-Back-End em NodeJS com MySQL;
-Arquitetura em camadas;
+Front-End em React - ok 
+Back-End em NodeJS com MySQL - ok
 
 Funcionalidades:
-Visualizar a lista de tarefas;
+Visualizar a lista de tarefas - ok
 Esta lista deve ser ordenável por ordem alfabética, data de criação ou por status;
-Inserir uma nova tarefa na lista;
-Remover uma tarefa da lista;
-Atualizar uma tarefa da lista;
-A tarefa deve possuir um status editável: pendente, em andamento ou pronto;
+Inserir uma nova tarefa na lista - ok
+Remover uma tarefa da lista - ok
+Atualizar uma tarefa da lista - ok
+A tarefa deve possuir um status editável:pendente, em andamento ou pronto - ok 
+30% testes de cobertura - 
 
-ordenar por ordem alfabetica
-data de criacao
-status
-estruturar em cadamas MSC
-usarlint
+Proximos passos:
 criar regras de negócios
-fazer middlewares de erro
-refazer model com msql
+fazer middlewares de validação e erro
+organizar melhor a arquitetura em camadas - quase
+tipar
+usar interfaces
+testes
+
