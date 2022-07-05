@@ -50,7 +50,7 @@ Organizar melhor a arquitetura em camadas
 Usar tipagens e interfaces
 Criar os testes
 Estilização
-
+Deploy
 
 ### para rodar frontend
 
