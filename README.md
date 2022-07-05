@@ -49,6 +49,7 @@ Criar middlewares de validação e erros
 Organizar melhor a arquitetura em camadas
 Usar tipagens e interfaces
 Criar os testes
+Estilização
 
 
 ### para rodar frontend
