@@ -7,7 +7,7 @@ const url = 'http://localhost:4003/task';
 
 export function TaskList({taskList}: any) { 
 
-  const [sort, setSort] = useState([]);
+  const [sort, setSort] = useState('createdAt');
   // const addSort = ({target}: any) => setSort(target.value); 
 
   const editTask = async (id: any, editedTask: any) => {
@@ -22,7 +22,7 @@ export function TaskList({taskList}: any) {
 
   const todosList = taskList
    && [...taskList]
-  //  .sort((a: any, b: any) => a[sort] > b[sort] ? 1 : -1)
+  .sort((a: any, b: any) => a[sort] > b[sort] ? 1 : -1)
    .map((task: any, i: number)=> (
     <TaskItem
       editTask={editTask}
