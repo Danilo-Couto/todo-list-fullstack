@@ -24,15 +24,15 @@ export function TaskList({taskList}: any) {
       id={task.id}
       title={task.name}
       content={task.content}
+      created={task.created_at}
+      owner={task.User.name}
       status={task.status}
-      taskUser={task.userId}
       taskList={taskList}
     />
   ));
 
   return (
     <>
-      <h3>Lista de Tarefas</h3>
       <ul>{todosList && todosList}</ul>
     </>
   );

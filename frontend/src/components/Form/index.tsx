@@ -11,11 +11,13 @@ export function Form({loadPage, setLoadPage}: any) {
   const [owner, setOwner] = useState(undefined); 
   const [status, setStatus] = useState(undefined); 
 
+  const userId = owner === "Danilo" ? 1 : 2;
+
   const newTask = {
-    name: title, content, owner, status 
+    name: title, content, userId, status 
   }
   
-  // console.log(status)
+  // console.log(owner)
 
   const createTask = async (event: any) => {
     event.preventDefault(); 

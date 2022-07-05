@@ -17,15 +17,16 @@ export default class TaskController {
   }
 
   create = async(req: Request, res: Response) => {
-    const { name, content, status, owner } = req.body;
-    const task = await this.taskModel.create(name, content, status, +owner);
+    const { name, content, status, userId } = req.body;
+    const task = await this.taskModel.create(name, content, status, userId);
     return res.json({ 'task created': task });
   }
 
   updateOne = async(req: Request, res: Response) => {
     const { id } = req.params;
-    const { name, content, status, userId } = req.body;
-    const task = await this.taskModel.updateOne(+id, name, content, status, userId);
+    const { name, editedContent, status, owner } = req.body;
+
+    const task = await this.taskModel.updateOne(+id, name, editedContent, status, owner);
     return res.json({ 'task updated': task });
   }
 

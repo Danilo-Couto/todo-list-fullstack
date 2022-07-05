@@ -7,8 +7,8 @@ export function InputFields({addTitle, title, addContent, content, addOwner, own
     <label> Responsável:
       <select onChange={addOwner} required value={owner}>
         <option defaultValue={"default"}></option>
-        <option value={'1'}>Danilo</option>
-        <option value={'2'}>Murilo</option>
+        <option value={'Danilo'}>Danilo</option>
+        <option value={'Murilo'}>Murilo</option>
       </select>
     </label>
 
