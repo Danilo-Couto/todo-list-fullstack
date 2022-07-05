@@ -6,6 +6,10 @@ import TaskItem from "./TaskItem";
 const url = 'http://localhost:4003/task';
 
 export function TaskList({taskList}: any) { 
+
+  const [sort, setSort] = useState([]);
+  // const addSort = ({target}: any) => setSort(target.value); 
+
   const editTask = async (id: any, editedTask: any) => {
     try {
       await axios.put(`${url}/${id}`, editedTask)
@@ -14,24 +18,17 @@ export function TaskList({taskList}: any) {
       }
   }
 
-  // console.log(taskList && taskList)
-  
   const deleteTask = async (id: any) => await axios.delete(`${url}/${id}`);
-
-  const [sort, setSort] = useState([]);
-  const addSort = ({target}: any) => setSort(target.value); 
-
-  // console.log(sort)
 
   const todosList = taskList
    && [...taskList]
-   .sort((a: any, b: any) => a.created > b.created ? 1 : -1)
+  //  .sort((a: any, b: any) => a[sort] > b[sort] ? 1 : -1)
    .map((task: any, i: number)=> (
     <TaskItem
       editTask={editTask}
       deleteTask={deleteTask}
-      key={task.i}
-      id={i}
+      key={i}
+      id={task.id}
       title={task.name}
       content={task.content}
       createdAt={task.created_at}
@@ -43,7 +40,7 @@ export function TaskList({taskList}: any) {
 
   return (
     <>
-      {todosList && <Sorting {...{sort, addSort}}/>}
+      {todosList && <Sorting {...{sort, setSort}}/>}
       <ul>{todosList && todosList}</ul>
     </>
   );

@@ -6,7 +6,6 @@ export function useFetch(){
   
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<Error | null>(null)
-    
     const [taskList, setTaskList] = useState();
     
     // buscar sobre stale while revalidation
