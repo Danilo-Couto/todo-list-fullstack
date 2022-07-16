@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/dataBase/server.ts",
     "studio": "npx prisma studio",
-    "migrate": "npx prisma migrate dev"
+    "migrate": "npx prisma migrate dev",
+    "test:dev": "mocha src/tests/unit/*.test.ts --exit -t 60000",
+    "test:coverage": "nyc npm run test:dev"
   },
   "keywords": [],
   "author": "",
