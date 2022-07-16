@@ -8,7 +8,7 @@
     "dev": "nodemon src/dataBase/server.ts",
     "studio": "npx prisma studio",
     "migrate": "npx prisma migrate dev",
-    "test:dev": "mocha src/tests/unit/*.test.ts --exit -t 60000",
+    "test:dev": "mocha src/tests/unit/**.test.ts --exit -t 60000",
     "test:coverage": "nyc npm run test:dev"
   },
   "keywords": [],
