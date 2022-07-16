@@ -3,7 +3,6 @@ import Sinon, { SinonStub } from 'sinon';
 import prismaClient from '../../dataBase/prismaClient';
 import TaskModel from '../../models/task';
 import { content, id, name, status, taskMock, userId, } from '../mocks/taskMock';
-// import { carMock, carMockUpdated, validId } from '../mocks/carMocks';
 
 describe('Tests Model', () => {
     describe('success', () => {
