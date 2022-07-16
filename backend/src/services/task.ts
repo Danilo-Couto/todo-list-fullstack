@@ -1,38 +1,46 @@
 import TaskModel from '../models/task';
+import err from '../utils/err';
+import { errMessages } from '../utils/errMessages';
 
 export default class TaskService {
-  taskModel: TaskModel;
-  constructor(){
-    this.taskModel = new TaskModel();
+  constructor(private taskModel= new TaskModel()){
   }
 
-  async create(name: string, content: string, userId: number) {
-    const task = this.taskModel.create(name, content, userId);
-    return;
+  findAll = async() => {
+    const tasks = await this.taskModel.findAll();
+    return tasks;
   }
 
-  async updateOne(id: number, name: string, editedContent: string, taskId: number) {
-    const task = this.taskModel.updateOne( id, name, editedContent, taskId);
-    return;
+  findOne = async(id: number) => {
+    const task = await this.taskModel.findOne(id);
+    if (!task) throw err('notFound', errMessages.notFound);
+
+    return task;
   }
 
-  async findAll() {
-    const tasks = this.taskModel.findAll();
-    return;
+  create = async(name: string, content: string, status: string, userId: number) => {
+    const task = await this.taskModel.create(name, content, status, userId);
+    return task;
   }
 
-  async findOne(id: number) {
-    const task = this.taskModel.findOne(id);
-    return;
+  updateOne = async(id: string | number, name: string, editedContent: string, status: string, owner: number) => {
+    const exists = await this.findOne(+id);
+    if (exists) throw err('notFound', errMessages.notFound);
+    
+    const task = await this.taskModel.updateOne(+id, name, editedContent, status, owner);
+    return  task;
   }
 
-  async deleteOne(id: number) {
-    const task = this.taskModel.deleteOne(id);
-    return;
+  deleteOne = async (id: string | number) => {
+    const exists = await this.findOne(+id);
+    if (exists) throw err('notFound', errMessages.notFound);
+
+    const task = await this.taskModel.deleteOne(+id);
+    return task;
   }
 
-  async deleteAll() {
-    const task = this.taskModel.deleteAll();
-    return;
+  deleteAll = async() => {
+    await this.taskModel.deleteAll();
+    return 
   }
 }

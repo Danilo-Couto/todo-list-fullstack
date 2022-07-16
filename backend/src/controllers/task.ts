@@ -7,7 +7,7 @@ export default class TaskController {
 
   findAll = async(_req: Request, res: Response) => {
     const tasks = await this.taskModel.findAll();
-    return res.json({ 'tasks': tasks });
+    return res.json({ 'tasks': tasks || []});
   }
 
   findOne = async(req: Request, res: Response) => {
