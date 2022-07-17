@@ -49,8 +49,12 @@ export default createGlobalStyle`
     padding:  rem;
   }
 
-  h4, h1 {
+  h1 {
     text-align: center;
+    text-transform: uppercase;
+  }
+
+  h4 {
     text-transform: uppercase;
   }
 
