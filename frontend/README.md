@@ -1,46 +1,66 @@
-# Getting Started with Create React App
+## Todo List FullStack
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este é meu primeiro projeto full stack como estudante de desenvolvimento web.
 
-## Available Scripts
+Uma lista de tarefas simples editável e ordenável feita em React com integração via API com backend em Node JS.
 
-In the project directory, you can run:
+## Instalação
 
-### `npm start`
+Use npm install para instalar as dependencias
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```bash
+npm install
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Stacks Utilizadas
 
-### `npm test`
+##### TypeScript
+##### React
+##### Node Js
+##### Express
+##### Prisma (ORM)
+##### Nodemon
+##### Axios
+##### Cors
+##### MySQL2
+##### JOI Validation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#####  EsLint
+##### StyledComponents
 
-### `npm run build`
+## Requisitos técnicos:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Front-End em React  
+Back-End em NodeJS com MySQL
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Funcionalidades concluídas:
 
-### `npm run eject`
+Visualizar a lista de tarefas 
+Esta lista deve ser ordenável por ordem alfabética, data de criação ou por status 
+Inserir uma nova tarefa na lista 
+Remover uma tarefa da lista 
+Atualizar uma tarefa da lista 
+A tarefa deve possuir um status editável:pendente, em andamento ou pronto  
+Criar regras de negócios
+Criar middlewares de validação e erros
+Estilização
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Implementações em andamento:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Organizar melhor a arquitetura em camadas
+Usar tipagens e interfaces
+Criar os testes
+Deploy
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### para rodar frontend
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```bash
+npm start
+```
 
-## Learn More
+### para rodar backend
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+npm run dev
+```
