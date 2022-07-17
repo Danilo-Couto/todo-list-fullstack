@@ -7,8 +7,7 @@ function App() {
 
   return (
     <>
-      <div className="App-wrapper">
-        <h1>Lista de Tarefas</h1>
+      <div>
         <Form />
         <TaskList {...props} />
       </div>

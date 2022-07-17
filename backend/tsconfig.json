@@ -17,5 +17,10 @@
     },
     "module": "CommonJS",
     "moduleResolution": "Node"
-  }
+  },
+  "exclude": [
+    "./tests/",
+    "./node_modules/",
+    "./dist/"
+  ]
 }

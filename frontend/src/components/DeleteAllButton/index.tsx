@@ -1,5 +1,5 @@
 export function DeleteAllButton({deleteAllTasks}:any){
   return (
-    <button type="button" onClick={deleteAllTasks}>Excluir Tudo</button>
+    <button className="delete" type="button" onClick={deleteAllTasks}>Excluir Tudo</button>
     );
 }

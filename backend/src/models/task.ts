@@ -8,9 +8,7 @@ const select = {
     },
   },
 }
-export default class TaskModel {
-  
-  
+export default class TaskModel {  
   async findAll() {
     const tasks = await prismaClient.task.findMany({select})
     return tasks;
@@ -24,7 +22,7 @@ export default class TaskModel {
     return task;
   }
   
-  async create(name: string, content: string, status: string, userId: number,) {
+  async create(name: string, content: string, status: string, userId: number) {
     const task = await prismaClient.task.create({
       data: { name, content, status, userId } ,
     });
@@ -32,7 +30,6 @@ export default class TaskModel {
   }
 
   async updateOne(id: number, name: string, editedContent: string, status: string, owner: number) {
-
     const task = await prismaClient.task.update({
       where: { id },
       data: { name, content: editedContent, status, userId: owner }})

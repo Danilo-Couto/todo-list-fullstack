@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import TaskController from '../controllers/task';
+import { createValidation, idValidation, updateValidation } from '../middlewares/validations';
 // import TaskUserController from '../controllers/taskUser';
 // import UserController from '../controllers/user';
 
@@ -10,11 +11,11 @@ const task = new TaskController(); // passar prismaClient por arg
 // const taskUser = new TaskUserController();
 
 router.get('/task', task.findAll);
-router.get('/task/:id', task.findOne);
+router.get('/task/:id', idValidation, task.findOne);
 router.delete('/task/', task.deleteAll);
-router.delete('/task/:id', task.deleteOne);
-router.put('/task/:id', task.updateOne);
-router.post('/task', task.create);
+router.delete('/task/:id', idValidation, task.deleteOne);
+router.put('/task/:id', idValidation, updateValidation, task.updateOne);
+router.post('/task', createValidation, task.create);
 
 // router.post('/user', user.create);
 // router.get('/user', user.findAll);
