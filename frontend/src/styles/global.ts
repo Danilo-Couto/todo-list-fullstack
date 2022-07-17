@@ -45,7 +45,6 @@ export default createGlobalStyle`
   }
 
   .todo-list {
-    border-bottom: solid 0.1rem #CDCDCD;
     padding:  rem;
   }
 
