@@ -21,15 +21,13 @@ export default createGlobalStyle`
 
   body {
     margin: 2rem;
-    background-image: url(https://www.fazendadorosa.com.br/templates/yootheme/cache/homeoff-f55029e6.jpeg);
+    background-image: url('image.webp');
     background-size: cover;
-    background-color: #F1F1F1;
     font: 400 1rem 'Montserrat', sans-serif;
-    color: #202020;
+    color: #F1F1F1;
   }
-
+  
   input {
-    background: ${({ theme })  => theme ? '#fff' : 'F1F1F1' };
     font: 400 1rem 'Montserrat', sans-serif;
     margin: 1rem;
     border: 2px solid #CDCDCD;
@@ -37,7 +35,6 @@ export default createGlobalStyle`
   }
 
   select {
-    background: ${({ theme })  => theme ? 'beach.webp' : 'F1F1F1' };
     font: 400 1rem 'Montserrat', sans-serif;
     margin: 1rem;
     border: 2px solid #CDCDCD;
@@ -67,8 +64,8 @@ export default createGlobalStyle`
     margin: 0.5rem;
     font-size: 1rem;
     border-radius: 0.3rem;
-    background: ${({ theme }) => theme ? '#3F7FBE' : 'F1F1F1' };
-    color: ${({ theme }) =>  theme ? '#F1F1F1' : 'F1F1F1' };
+    background: #3F7FBE;
+    color: #F1F1F1;
     transition: 0.5s;
     height: 2rem;
     width: 10rem;
@@ -85,11 +82,10 @@ export default createGlobalStyle`
     margin-bottom: 0.6rem;
     font-size: 1rem;
     border-radius: 0.3rem;
-    background: ${({ theme }) => theme ? '#3F7FBE' : 'F1F1F1' };
-    color: ${({ theme }) =>  theme ? '#F1F1F1' : 'F1F1F1' };
     transition: 0.5s;
     height: 2rem;
     width: 10rem;
+    color: #F1F1F1;
   }
   
   .delete{
