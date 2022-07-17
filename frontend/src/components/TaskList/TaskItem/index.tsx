@@ -29,28 +29,27 @@ function TaskItem({ editTask, deleteTask, id, title, content, status, owner, cre
  
   const viewTask = (
     <>
-    <h4>{title}</h4>
       <div key={id} className="todo-list" >
+        <h4>{title}</h4>
         <p>descrição: {content}</p>
         <p>responsável: {owner}</p>
         <p>status: {status}</p>
         <p>criada em: {new Date(createdAt).toLocaleDateString('pt-BR', {timeZone: 'UTC'})}</p>
-        <button type="button" onClick={deleteClick} value={id}>Deletar tarefa</button>
-        <button type="button" onClick={toogleEditForm}>Editar tarefa</button>
+        <button className="edit" type="button" onClick={toogleEditForm}>Editar tarefa</button>
+        <button className="delete" type="button" onClick={deleteClick} value={id}>Deletar tarefa</button>
     </div>
   </>
 );
 
   const editingForm = (
     <div className="">
-      <p>editando tarefa</p>
       <form className="" onSubmit={sendEdition}>
         <Inputs {...{
           setTitle, setContent, setStatus, title, content,
           status, setOwner, editedStatus
         }} />
         <button type="submit">Salvar</button>
-        <button type="button" onClick={toogleEditForm}>Cancelar</button>
+        <button className="cancel" type="button" onClick={toogleEditForm}>Cancelar</button>
       </form>
       </div>
   )

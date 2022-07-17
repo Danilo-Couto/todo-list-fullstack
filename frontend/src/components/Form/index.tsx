@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { URL } from '../../utils/url';
 import { Inputs } from '../Inputs';
+import { Container } from './styles';
 
 export function Form() {
   
@@ -28,10 +29,11 @@ export function Form() {
 
   return (
     <>
+    <h1>Lista de Tarefas</h1>
       <form onSubmit={createTask}>
       <Inputs {...{setTitle, setContent, setOwner, setStatus}} />
         <button type="submit">Adicionar Tarefa</button>
-        <button type="button" onClick={deleteAllTasks}>Excluir Tudo</button>
+        <button className="delete" type="button" onClick={deleteAllTasks}>Excluir Tudo</button>
     </form>  
     </>
   );
